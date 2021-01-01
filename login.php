@@ -1,6 +1,5 @@
 
 
-
 <?php
 session_start();
 
@@ -26,7 +25,7 @@ if ( !isset($_POST['userName'], $_POST['Password']) ) {
 
 
 // Prepare our SQL, preparing the SQL statement will prevent SQL injection.
-if ($stmt = $con->prepare('SELECT id, password,admin FROM accounts WHERE username = ?')) {
+if ($stmt = $con->prepare('SELECT id, password,admin,FirstName,lastName FROM accounts WHERE username = ?')) {
 	// Bind parameters (s = string, i = int, b = blob, etc), in our case the username is a string so we use "s"
 	$stmt->bind_param('s', $_POST['userName']);
 	$stmt->execute();
@@ -34,7 +33,7 @@ if ($stmt = $con->prepare('SELECT id, password,admin FROM accounts WHERE usernam
 	$stmt->store_result();
 
 if ($stmt->num_rows > 0) {
-	$stmt->bind_result($id, $password,$admin);
+	$stmt->bind_result($id, $password,$admin,$FirstName,$lastName);
 	$stmt->fetch();
 	// Account exists, now we verify the password.
 	// Note: remember to use password_hash in your registration file to store the hashed passwords.
@@ -56,11 +55,33 @@ if ($stmt->num_rows > 0) {
 		$_SESSION['loggedin'] = TRUE;
 		$_SESSION['name'] = $_POST['userName'];
 		$_SESSION['id'] = $id;
+		$_SESSION['FirstName'] = $FirstName;
+		$_SESSION['lastName'] = $lastName;
+
 		$y = '1'; 	
 $admincheck='1';
-		
+		$_SESSION['userName'] = $_POST['userName'];
 
-header("Location:admin.php?admin=".$admin);
+$check = '1';
+
+$check2 =$admin;
+
+
+
+
+
+
+if($check2==$check){
+
+header("Location:adminpage.php?admin=".$admin);
+
+}
+
+else{
+
+header("Location:user.html");
+
+}
 
 exit();
 
