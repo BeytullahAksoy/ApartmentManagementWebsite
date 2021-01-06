@@ -11,6 +11,8 @@ $DATABASE_PASS = '';
 $DATABASE_NAME = 'apartman';
 // Try and connect using the info above.
 $con = mysqli_connect($DATABASE_HOST, $DATABASE_USER, $DATABASE_PASS, $DATABASE_NAME);
+
+	$_SESSION['con'] = $con;
 if ( mysqli_connect_errno() ) {
 	// If there is an error with the connection, stop the script and display the error.
 	exit('Failed to connect to MySQL: ' . mysqli_connect_error());
@@ -25,7 +27,7 @@ if ( !isset($_POST['userName'], $_POST['Password']) ) {
 
 
 // Prepare our SQL, preparing the SQL statement will prevent SQL injection.
-if ($stmt = $con->prepare('SELECT id, password,admin,FirstName,lastName FROM accounts WHERE username = ?')) {
+if ($stmt = $con->prepare('SELECT id, password,admin,FirstName,lastName, email,phoneNumber FROM accounts WHERE username = ?')) {
 	// Bind parameters (s = string, i = int, b = blob, etc), in our case the username is a string so we use "s"
 	$stmt->bind_param('s', $_POST['userName']);
 	$stmt->execute();
@@ -33,10 +35,12 @@ if ($stmt = $con->prepare('SELECT id, password,admin,FirstName,lastName FROM acc
 	$stmt->store_result();
 
 if ($stmt->num_rows > 0) {
-	$stmt->bind_result($id, $password,$admin,$FirstName,$lastName);
+	$stmt->bind_result($id, $password,$admin,$FirstName,$lastName,$email,$phoneNumber);
 	$stmt->fetch();
-	// Account exists, now we verify the password.
-	// Note: remember to use password_hash in your registration file to store the hashed passwords.
+	
+
+
+
 	if (password_verify($_POST['Password'], $password)) {
 		// Verification success! User has loggedin!
 		// Create sessions so we know the user is logged in, they basically act like cookies but remember the data on the server.
@@ -57,7 +61,8 @@ if ($stmt->num_rows > 0) {
 		$_SESSION['id'] = $id;
 		$_SESSION['FirstName'] = $FirstName;
 		$_SESSION['lastName'] = $lastName;
-
+		$_SESSION['email'] = $email;
+		$_SESSION['phoneNumber'] = $phoneNumber;
 		$y = '1'; 	
 $admincheck='1';
 		$_SESSION['userName'] = $_POST['userName'];
@@ -79,7 +84,7 @@ header("Location:adminpage.php?admin=".$admin);
 
 else{
 
-header("Location:user.html");
+header("Location:user.php");
 
 }
 

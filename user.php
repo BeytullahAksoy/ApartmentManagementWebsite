@@ -161,17 +161,8 @@ session_start();
   echo $_SESSION['FirstName'];
  
 
-?>  Welcome to admin panel of our apartment! <?php
-
-
-
-
-
-?>
-  
-
-</h2>
-          <p>Here you can manage the apartment. </p>
+?>  Welcome to user page of our apartment!</h2>
+          <p>Here you can do your apartment tasks. </p>
           
         </figcaption>
       </figure>
@@ -183,11 +174,8 @@ session_start();
         <article class="two_quarter">
           <h2>The particulars</h2>
           <pre>Get payment                   
-Add expense
 Payment Histories
-Determine a rate to be projected to the residents
-See the residents list and collected / uncollected balance
-Create a new resident or move out existing one
+
 
            </pre>
         </article>
@@ -238,7 +226,7 @@ Create a new resident or move out existing one
     </div>
     <p></p>
     <p></p>
-    
+   
 
 
   <div>
@@ -396,7 +384,7 @@ $st->bind_result($loan);
 
 
      
-       <p>For edit , please send a message in communications.</p>
+      
         
 
   </div>
@@ -464,6 +452,8 @@ echo "<table border='1'>
 <tr>
 <th>Firstname</th>
 <th>Lastname</th>
+<th>Amount</th>
+<th>Date</th>
 </tr>";
 
 while($row = mysqli_fetch_array($result))
