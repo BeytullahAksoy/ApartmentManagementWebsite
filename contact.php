@@ -1,5 +1,3 @@
-
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -23,7 +21,12 @@
   </head>
 
   <body>
+<?php
+session_start();
 
+ 
+
+?>
     <!-- ***** Preloader Start ***** -->
     <div id="preloader">
         <div class="jumper">
@@ -40,20 +43,17 @@
         <div class="row">
           <div class="col-md-8 col-xs-12">
             <ul class="left-info">
-              <li><a href="#"><i class="fa fa-envelope"></i>beytullahaksoy@gmail.com</a></li>
+  <li><a href="#"><i class="fa fa-envelope"></i>beytullahaksoy@gmail.com</a></li>
               <li><a href="#"><i class="fa fa-phone"></i>111111111</a></li>
             </ul>
           </div>
           <div class="col-md-4">
-            <ul class="right-icons">
-              
-             
-            </ul>
+            
           </div>
         </div>
       </div>
     </div>
-
+    
     <header class="">
       <nav class="navbar navbar-expand-lg">
         <div class="container">
@@ -63,7 +63,7 @@
           </button>
           <div class="collapse navbar-collapse" id="navbarResponsive">
             <ul class="navbar-nav ml-auto">
-              <li class="nav-item active">
+              <li class="nav-item">
                 <a class="nav-link" href="adminpage.php">Home
                   <span class="sr-only">(current)</span>
                 </a>
@@ -75,7 +75,7 @@
                 <a class="nav-link" href="blog.php">Payment</a>
               </li>
              
-              <li class="nav-item">
+              <li class="nav-item active">
                 <a class="nav-link" href="contact.php">Profile</a>
               </li>
             </ul>
@@ -85,71 +85,211 @@
     </header>
 
     <!-- Page Content -->
-    <!-- Banner Starts Here -->
-    <div class="main-banner header-text" id="top">
-        <div class="Modern-Slider">
-          <!-- Item -->
-          <div class="item item-1">
-            <div class="img-fill">
-                <div class="text-content">
-                  <h6>Manage your apartment efficiently!</h6>
-                  <h4><?php
-session_start();
+    <div class="page-heading header-text">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-12">
+            <h1>Your Profile</h1>
+            <span>Find your informations here</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="contact-information">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-4">
+            <div class="contact-item">
+              <i class="fa fa-phone"></i>
+              <h4>Personal Inforations</h4>
+               <p>
+        Name: <?php
+
   
   echo $_SESSION['FirstName'];
  
 
-?>  Welcome to admin panel of your apartment!</h4>
-                  
-                  
-                </div>
-            </div>
-          </div>
-          <!-- // Item -->
-          <!-- Item -->
-          <div class="item item-2">
-            <div class="img-fill">
-                <div class="text-content">
-                  <h6>Payments are so quick now!</h6>
-                  <h4>Collect your payments easily <br>  </h4>
-                  <p>Get payments from users.</p><p> List previous payments</p>
-                  <p>List the members who not paid</p>
-                  <a href="about.php" class="filled-button">About Us</a>
-                </div>
-            </div>
-          </div>
-          <!-- // Item -->
-          <!-- Item -->
-          <div class="item item-3">
-            <div class="img-fill">
-                <div class="text-content">
-                  <h6>People actions are so quick!</h6>
-                  <h4>Manage the members!</h4>
-                  <p>You can add or remove the members and find previous members.</p>
-                  <a href="contact.php" class="filled-button">Contact Us</a>
-                </div>
-            </div>
-          </div>
-          <!-- // Item -->
-        </div>
-    </div>
-    <!-- Banner Ends Here -->
+?></p>
+ <p>Surname: <?php
 
-   
+  
+  echo $_SESSION['lastName'];
+ 
+
+?></p>
+<p>e-mail:<?php
+
+  
+  echo $_SESSION['email'];
+ 
+
+?> </p> 
+Phone: 
+              <a href="#"><?php
+
+  
+  echo $_SESSION['phoneNumber'];
+ 
+
+?></a>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="contact-item">
+              <i class="fa fa-envelope"></i>
+              <h4>Building Informations</h4>
+             <p> Building :  <?php
+
+  $DATABASE_HOST = 'localhost';
+$DATABASE_USER = 'root';
+$DATABASE_PASS = '';
+$DATABASE_NAME = 'apartman';
+
+
+ $con = mysqli_connect($DATABASE_HOST, $DATABASE_USER, $DATABASE_PASS, $DATABASE_NAME);
+
+
+if ($stmt = $con->prepare('SELECT flat_id
+FROM accounts WHERE username = ?' )) {
+
+$stmt->bind_param('s', $_SESSION['userName']);
+  $stmt->execute();
+  // Store the result so we can check if the account exists in the database.
+  $stmt->store_result();
+
+  
+  $stmt->bind_result($flatid);
+  $stmt->fetch();
+
+if ($st = $con->prepare('SELECT floor,number
+FROM flats WHERE flat_id = ?' )) {
+
+$st->bind_param('s', $flatid);
+  $st->execute();
+  // Store the result so we can check if the account exists in the database.
+  $st->store_result();
+
+
+$st->bind_result($floor,$number);
+  $st->fetch();
+
+  echo "Floor: "; echo $floor; echo " Number: " ;echo$number;
+
+
+}
+
+
+
+
+
+
+
+
+
+
+
+}
+
+
+?>
+
 
   
 
-  
-   
-    <div class="callback-form">
-      <div class="container">
-        <div class="row">
-          <div class="col-md-12">
-            <div class="section-heading">
-              <h2>Last <em>Announcements</em></h2>
+
+</p>
+              
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="contact-item" style="margin-top: 0px; width: 300px;">
+              <i class=""     ></i>
               <br>
-              <div style="margin-left: 390px;">
-              <?php
+              <img src="logoo.jpg" style="height: 120px;width: 120px; margin-top: -100px">
+              <h4>Payment Informations</h4>
+             Loan: 
+    <?php
+
+  $DATABASE_HOST = 'localhost';
+$DATABASE_USER = 'root';
+$DATABASE_PASS = '';
+$DATABASE_NAME = 'apartman';
+
+
+ $con = mysqli_connect($DATABASE_HOST, $DATABASE_USER, $DATABASE_PASS, $DATABASE_NAME);
+
+
+
+
+if ($st = $con->prepare('SELECT loan
+FROM accounts WHERE username = ?' )) {
+
+$st->bind_param('s', $_SESSION['name']);
+  $st->execute();
+  // Store the result so we can check if the account exists in the database.
+  $st->store_result();
+
+
+$st->bind_result($loan);
+  $st->fetch();
+
+  echo $loan;
+
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+?>
+
+     <h2>Payment History:</h2>
+        <div class='bborder'  ></div>
+
+
+
+
+  <?php
+
+  $DATABASE_HOST = 'localhost';
+$DATABASE_USER = 'root';
+$DATABASE_PASS = '';
+$DATABASE_NAME = 'apartman';
+
+
+ $con = mysqli_connect($DATABASE_HOST, $DATABASE_USER, $DATABASE_PASS, $DATABASE_NAME);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+?>
+<div>
+
+
+<?php
 
 
 // Change this to your connection info.
@@ -170,45 +310,62 @@ echo "Failed to connect to MySQL: " . mysqli_connect_error();
 
 $namee = $_SESSION['userName'];
 
-$result = mysqli_query($con,"SELECT text,datee FROM announcements  ");
+$result = mysqli_query($con,"SELECT accounts.FirstName, accounts.lastName, paids.amount,paids.theDate FROM accounts inner join paids on accounts.id = paids.account_id where accounts.username = '$namee'  ");
 
 echo "<table border='1'>
 <tr>
-<th>Announcement</th>
+<th>Firstname</th>
+<th>Lastname</th>
+<th>Amount</th>
 <th>Date</th>
 </tr>";
 
 while($row = mysqli_fetch_array($result))
 {
 echo "<tr>";
-echo "<td>" . $row['text'] . "</td>";
-echo "<td>" . $row['datee'] . "</td>";
+echo "<td>" . $row['FirstName'] . "</td>";
+echo "<td>" . $row['lastName'] . "</td>";
+echo "<td>" . $row['amount'] . "</td>";
+echo "<td>" . $row['theDate'] . "</td>";
 echo "</tr>";
 }
 echo "</table>";
 
 mysqli_close($con);
 
-?></div>
+?>
+
+
+
+
+</div>
+
+
+
+
             </div>
           </div>
-          
         </div>
-
-        <br>
-        <br>
-        <br>
-        <br>
       </div>
     </div>
 
-   
+
+    <div id="map">
+<!-- How to change your own map point
+	1. Go to Google Maps
+	2. Click on your location point
+	3. Click "Share" and choose "Embed map" tab
+	4. Copy only URL and paste it within the src="" field below
+--><iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3190.694954538692!2d30.64754391525042!3d36.89764517992868!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14c391db4c3dc15f%3A0x7258add44e8254a5!2zQWtkZW5peiDDnG5pdmVyc2l0ZXNpIEJpbGdpc2F5YXIgTcO8aGVuZGlzbGnEn2kgQsO2bMO8bcO8!5e0!3m2!1str!2str!4v1609960921447!5m2!1str!2str" width="1700" height="600" frameborder="0" style="border:0;" allowfullscreen="" aria-hidden="false" tabindex="0"></iframe>
+    </div>
+
+  
     
     <div class="sub-footer">
       <div class="container">
         <div class="row">
           <div class="col-md-12">
-            <p>
+           <p>
                 CSE Apartment Management
                 
             </p>

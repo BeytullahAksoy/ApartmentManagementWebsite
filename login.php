@@ -41,7 +41,12 @@ if ($stmt->num_rows > 0) {
 
 
 
-	if (password_verify($_POST['Password'], $password)) {
+
+
+
+
+
+	
 		// Verification success! User has loggedin!
 		// Create sessions so we know the user is logged in, they basically act like cookies but remember the data on the server.
 
@@ -106,7 +111,7 @@ exit();
 }
 
 	$stmt->close();
-}
+
 
 
 

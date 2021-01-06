@@ -13,11 +13,14 @@ $masraf =(int) $_POST['masraf'];
 $con = mysqli_connect($DATABASE_HOST, $DATABASE_USER, $DATABASE_PASS, $DATABASE_NAME);
 
 
-echo $masraf;
+
 $stmt = $con->prepare("UPDATE accounts SET loan =loan + ? ");
 $stmt->bind_param("s", $masraf);
 
-echo "done";
+echo "The loan ";
+echo $masraf;
+echo "added.";
+echo "<a href=\"javascript:history.go(-1)\">GO BACK</a>";
 $stmt->execute();
 exit();
 

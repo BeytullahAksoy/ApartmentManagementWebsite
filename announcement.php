@@ -1,38 +1,31 @@
-<?php
+<?php 
 
 
 
-	session_start();
-// Change this to your connection info.
+session_start();
+
+
+
 $DATABASE_HOST = 'localhost';
 $DATABASE_USER = 'root';
 $DATABASE_PASS = '';
 $DATABASE_NAME = 'apartman';
 
 
-$username = $_POST['selected'];
+$masraf = $_POST['textt'];
 
-
-
+$today = date("F j, Y, g:i a");
 
 $con = mysqli_connect($DATABASE_HOST, $DATABASE_USER, $DATABASE_PASS, $DATABASE_NAME);
 
+$stmt = $con->prepare("insert into announcements(text,datee) values (?,'$today' ) ");
+$stmt->bind_param("s", $masraf);
 
-
-if($stmt = $con->prepare("update accounts set flat_id=0   where username = '$username' ")){
-
-
-$stmt->execute();
-echo "The member deleted. ";
+echo " Announcement Created";
 echo "<a href=\"javascript:history.go(-1)\">GO BACK</a>";
+$stmt->execute();
 exit();
 
 
 
-
-}
-
-
-
-
-?>
+ ?>

@@ -39,11 +39,11 @@ $flat->execute();
 	$flat->fetch();
 	
 	
+$hash2 = password_hash($password, PASSWORD_DEFAULT);
 
-
-$sql =$con -> prepare("insert into accounts(username,password,email,phoneNumber,admin,flat_id,FirstName,lastName,loan)  values('$username','$password','$email','$phone','$admin','$flat_id_sorgu','$first','$last',0)"); 
-echo password_hash("test", PASSWORD_DEFAULT);
-echo "ekelndi";
+$sql =$con -> prepare("insert into accounts(username,password,email,phoneNumber,admin,flat_id,FirstName,lastName,loan)  values('$username','$hash2','$email','$phone','$admin','$flat_id_sorgu','$first','$last',0)"); 
+echo "The member added.";
+echo "<a href=\"javascript:history.go(-1)\">GO BACK</a>";
 $sql->execute();
 
 
