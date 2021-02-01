@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 
 
@@ -22,10 +22,14 @@ $stmt = $con->prepare("insert into announcements(text,datee) values (?,'$today' 
 $stmt->bind_param("s", $masraf);
 
 echo " Announcement Created";
-echo "<a href=\"javascript:history.go(-1)\">GO BACK</a>";
+echo "<script>
+
+
+window.location.href='announce.php';
+</script>";
 $stmt->execute();
 exit();
 
 
 
- ?>
+?>

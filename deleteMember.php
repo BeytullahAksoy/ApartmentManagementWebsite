@@ -19,12 +19,22 @@ $con = mysqli_connect($DATABASE_HOST, $DATABASE_USER, $DATABASE_PASS, $DATABASE_
 
 
 
-if($stmt = $con->prepare("update accounts set flat_id=0   where username = '$username' ")){
+if($stmt = $con->prepare("INSERT INTO leftpersons (id_left,username_left,FirstName_left,lastName_left,	flat_id_left,phoneNumber_left,loan)
+SELECT id,username, 	FirstName, 	lastName, flat_id,phoneNumber,loan
+FROM accounts
+WHERE username = '$username' ")){
 
+
+	$stmtt =  $con ->prepare("DELETE FROM accounts WHERE username = '$username';");
 
 $stmt->execute();
+$stmtt -> execute();
+
 echo "The member deleted. ";
-echo "<a href=\"javascript:history.go(-1)\">GO BACK</a>";
+echo "<script>
+
+window.location.href='delete.php';
+</script>";
 exit();
 
 

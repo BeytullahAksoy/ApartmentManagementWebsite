@@ -69,14 +69,18 @@
                 </a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="packages.php">Admin Panel</a>
+                <a class="nav-link" href="panel.php">Admin Panel</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="blog.php">Payment</a>
+                <a class="nav-link" href="pay.php">Payment</a>
               </li>
              
               <li class="nav-item">
                 <a class="nav-link" href="contact.php">Profile</a>
+              </li>
+                
+                <li class="nav-item">
+                <a class="nav-link" href="index.php">Sign Out</a>
               </li>
             </ul>
           </div>
@@ -114,7 +118,7 @@ session_start();
                   <h4>Collect your payments easily <br>  </h4>
                   <p>Get payments from users.</p><p> List previous payments</p>
                   <p>List the members who not paid</p>
-                  <a href="about.php" class="filled-button">About Us</a>
+                
                 </div>
             </div>
           </div>
@@ -126,7 +130,7 @@ session_start();
                   <h6>People actions are so quick!</h6>
                   <h4>Manage the members!</h4>
                   <p>You can add or remove the members and find previous members.</p>
-                  <a href="contact.php" class="filled-button">Contact Us</a>
+                
                 </div>
             </div>
           </div>
@@ -141,14 +145,14 @@ session_start();
 
   
    
-    <div class="callback-form">
+    <div class="callback-form" style="margin-left:-300px">
       <div class="container">
         <div class="row">
           <div class="col-md-12">
             <div class="section-heading">
-              <h2>Last <em>Announcements</em></h2>
+              <h2 style="margin-left:280px">Last <em>Announcements</em></h2>
               <br>
-              <div style="margin-left: 390px;">
+              <div style="margin-left: 510px;">
               <?php
 
 

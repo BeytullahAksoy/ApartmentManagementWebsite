@@ -70,7 +70,7 @@ if($_SESSION['loan']< $_POST['price']){
 
     echo "<script>
 alert('Wrong Payment');
-window.location.href='pay.php';
+window.location.href='pay-r.php';
 </script>";
 }
 
@@ -116,7 +116,7 @@ if($_SESSION['loan']>= $_POST['price']){
             $stmt->execute();
             echo "<script>
 
-window.location.href='pay.php';
+window.location.href='pay-r.php';
 </script>";
 
 

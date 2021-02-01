@@ -1,3 +1,5 @@
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -55,24 +57,28 @@
     <header class="">
       <nav class="navbar navbar-expand-lg">
         <div class="container">
-          <a class="navbar-brand" href="user.php"><h2>Apartment Management <em> Website</em></h2></a>
+          <a class="navbar-brand" href="adminpage.php"><h2>Apartment Management <em> Website</em></h2></a>
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
           </button>
           <div class="collapse navbar-collapse" id="navbarResponsive">
             <ul class="navbar-nav ml-auto">
               <li class="nav-item active">
-                <a class="nav-link" href="user.php">Home
+                <a class="nav-link" href="adminpage.php">Home
                   <span class="sr-only">(current)</span>
                 </a>
               </li>
-              
+             
               <li class="nav-item">
-                <a class="nav-link" href="blog-r.php">Payment</a>
+                <a class="nav-link" href="pay-r.php">Payment</a>
               </li>
              
               <li class="nav-item">
                 <a class="nav-link" href="contact-r.php">Profile</a>
+              </li>
+                
+                <li class="nav-item">
+                <a class="nav-link" href="index.php">Sign Out</a>
               </li>
             </ul>
           </div>
@@ -95,7 +101,7 @@ session_start();
   echo $_SESSION['FirstName'];
  
 
-?>  Welcome to admin panel of your apartment!</h4>
+?>  Welcome to user panel of your apartment!</h4>
                   
                   
                 </div>
@@ -110,7 +116,7 @@ session_start();
                   <h4>Collect your payments easily <br>  </h4>
                   <p>Get payments from users.</p><p> List previous payments</p>
                   <p>List the members who not paid</p>
-                  <a href="about.php" class="filled-button">About Us</a>
+                
                 </div>
             </div>
           </div>
@@ -122,7 +128,7 @@ session_start();
                   <h6>People actions are so quick!</h6>
                   <h4>Manage the members!</h4>
                   <p>You can add or remove the members and find previous members.</p>
-                  <a href="contact.php" class="filled-button">Contact Us</a>
+                
                 </div>
             </div>
           </div>
@@ -137,14 +143,14 @@ session_start();
 
   
    
-    <div class="callback-form">
+    <div class="callback-form" style="margin-left:-300px">
       <div class="container">
         <div class="row">
           <div class="col-md-12">
             <div class="section-heading">
-              <h2>Last <em>Announcements</em></h2>
+              <h2 style="margin-left:280px">Last <em>Announcements</em></h2>
               <br>
-              <div style="margin-left: 390px;">
+              <div style="margin-left: 510px;">
               <?php
 
 

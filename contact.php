@@ -2,6 +2,12 @@
 <html lang="en">
 
   <head>
+      <style>
+
+                    .ui-datepicker-calendar {
+    display: none;
+    }
+      </style>
 
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -69,15 +75,19 @@ session_start();
                 </a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="packages.php">Admin Panel</a>
+                <a class="nav-link" href="panel.php">Admin Panel</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="blog.php">Payment</a>
+                <a class="nav-link" href="pay.php">Payment</a>
               </li>
              
               <li class="nav-item active">
                 <a class="nav-link" href="contact.php">Profile</a>
               </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="index.php">Sign Out</a>
+                </li>
+
             </ul>
           </div>
         </div>
@@ -192,7 +202,7 @@ $st->bind_result($floor,$number);
 }
 
 
-?>
+                             ?>
 
 
   
@@ -208,39 +218,36 @@ $st->bind_result($floor,$number);
               <br>
               <img src="logoo.jpg" style="height: 120px;width: 120px; margin-top: -100px">
               <h4>Payment Informations</h4>
-             Loan: 
+                  Loan: 
     <?php
 
-  $DATABASE_HOST = 'localhost';
-$DATABASE_USER = 'root';
-$DATABASE_PASS = '';
-$DATABASE_NAME = 'apartman';
+    $DATABASE_HOST = 'localhost';
+    $DATABASE_USER = 'root';
+    $DATABASE_PASS = '';
+    $DATABASE_NAME = 'apartman';
 
 
- $con = mysqli_connect($DATABASE_HOST, $DATABASE_USER, $DATABASE_PASS, $DATABASE_NAME);
+    $con = mysqli_connect($DATABASE_HOST, $DATABASE_USER, $DATABASE_PASS, $DATABASE_NAME);
 
 
 
 
-if ($st = $con->prepare('SELECT loan
+    if ($st = $con->prepare('SELECT loan
 FROM accounts WHERE username = ?' )) {
 
-$st->bind_param('s', $_SESSION['name']);
-  $st->execute();
-  // Store the result so we can check if the account exists in the database.
-  $st->store_result();
+        $st->bind_param('s', $_SESSION['name']);
+        $st->execute();
+        // Store the result so we can check if the account exists in the database.
+        $st->store_result();
 
 
-$st->bind_result($loan);
-  $st->fetch();
+        $st->bind_result($loan);
+        $st->fetch();
 
-  echo $loan;
-
-
-}
+        echo $loan;
 
 
-
+    }
 
 
 
@@ -251,68 +258,132 @@ $st->bind_result($loan);
 
 
 
+
+
+
+
+    ?>
+              <br />
+                
+
+            
+           
+            <br />
+                    
+
+                <form action="" method="post">
+
+</form>
+
+
+                <form name="open_file" action="" method='GET'>
+      <select name="file" style="width:40%; font-size:20px;">
+           <option value="2021" selected="selected" >2021</option>
+  <option value="2020">2020</option>
+  <option value="2019">2019</option>
+  <option value="2018">2018</option>
+  <option value="2017">2017</option>
+  <option value="2016">2016</option>
+  <option value="2015">2015</option>
+  <option value="2014">2014</option>
+  <option value="2013">2013</option>
+  <option value="2012">2012</option> 
+      </select>
+     
+
+
+
+             
+      <select name="month" style="width:40%; font-size:20px;">
+          
+   <option value="1" selected="selected">1</option>
+  <option value="2">2</option>
+  <option value="3">3</option>
+  <option value="4">4</option>
+  <option value="5">5</option>
+  <option value="6">6</option>
+  <option value="7">7</option>
+  <option value="8">8</option>
+  <option value="9">9</option>
+  <option value="10">10</option>             
+  <option value="11">11</option>
+  <option value="12">12</option> 
+      </select>
+      <button type="submit" name="submit">UPLOAD</button>
+</form>
+<!-- GET YOUR SELECT VALUES USING PHP -->
+
+<?php 
+
+   
 
 ?>
 
-     <h2>Payment History:</h2>
-        <div class='bborder'  ></div>
+
+
+
+                <?php
+                
+                if(isset($_GET['file'])){
+                    $year = $_GET['file'];
+                    
+
+
+
+                    $month = $_GET['month'];
+                    echo "Payments in ";
+                       
+                    echo $year;
+                    echo "-";
+                    echo $month;
+                    
+                    
+                    
+
+                    $DATABASE_HOST = 'localhost';
+                    $DATABASE_USER = 'root';
+                    $DATABASE_PASS = '';
+                    $DATABASE_NAME = 'apartman';
+
+
+                    $con = mysqli_connect($DATABASE_HOST, $DATABASE_USER, $DATABASE_PASS, $DATABASE_NAME);
+
+
+
+                    
+                    
+
+
+                    
+
+
+                    // Change this to your connection info.
+                    $DATABASE_HOST = 'localhost';
+                    $DATABASE_USER = 'root';
+                    $DATABASE_PASS = '';
+                    $DATABASE_NAME = 'apartman';
 
 
 
 
-  <?php
+                    $con = mysqli_connect($DATABASE_HOST, $DATABASE_USER, $DATABASE_PASS, $DATABASE_NAME);
+                    // Check connection
+                    if (mysqli_connect_errno())
+                    {
+                        echo "Failed to connect to MySQL: " . mysqli_connect_error();
+                    }
 
-  $DATABASE_HOST = 'localhost';
-$DATABASE_USER = 'root';
-$DATABASE_PASS = '';
-$DATABASE_NAME = 'apartman';
+                    $namee = $_SESSION['userName'];
 
+                    $result = mysqli_query($con,"SELECT accounts.FirstName, accounts.lastName, 
+payments.amount,payments.theDate FROM accounts inner join payments on accounts.id = payments.account_id where accounts.username = '$namee'  and YEAR(theDate) = '$year' and MONTH(theDate)= '$month' ");
 
- $con = mysqli_connect($DATABASE_HOST, $DATABASE_USER, $DATABASE_PASS, $DATABASE_NAME);
-
-
-
-
-
-
+                        
 
 
 
 
-
-
-
-
-
-
-?>
-<div>
-
-
-<?php
-
-
-// Change this to your connection info.
-$DATABASE_HOST = 'localhost';
-$DATABASE_USER = 'root';
-$DATABASE_PASS = '';
-$DATABASE_NAME = 'apartman';
-
-
-
-
-$con = mysqli_connect($DATABASE_HOST, $DATABASE_USER, $DATABASE_PASS, $DATABASE_NAME);
-// Check connection
-if (mysqli_connect_errno())
-{
-echo "Failed to connect to MySQL: " . mysqli_connect_error();
-}
-
-$namee = $_SESSION['userName'];
-
-$result = mysqli_query($con,"SELECT accounts.FirstName, accounts.lastName, paids.amount,paids.theDate FROM accounts inner join paids on accounts.id = paids.account_id where accounts.username = '$namee'  ");
-
-echo "<table border='1'>
+                    echo "<table border='1'>
 <tr>
 <th>Firstname</th>
 <th>Lastname</th>
@@ -320,30 +391,81 @@ echo "<table border='1'>
 <th>Date</th>
 </tr>";
 
-while($row = mysqli_fetch_array($result))
-{
-echo "<tr>";
-echo "<td>" . $row['FirstName'] . "</td>";
-echo "<td>" . $row['lastName'] . "</td>";
-echo "<td>" . $row['amount'] . "</td>";
-echo "<td>" . $row['theDate'] . "</td>";
-echo "</tr>";
-}
-echo "</table>";
+                    while($row = mysqli_fetch_array($result))
+                    {
+                        echo "<tr>";
+                        echo "<td>" . $row['FirstName'] . "</td>";
+                        echo "<td>" . $row['lastName'] . "</td>";
+                        echo "<td>" . $row['amount'] . "</td>";
+                        echo "<td>" . $row['theDate'] . "</td>";
+                        echo "</tr>";
+                    }
+                    echo "</table>";
 
-mysqli_close($con);
+                    mysqli_close($con);
 
-?>
+                    
+                    
+
+
+                }
+                
+                       
+                   
+                
+               
+                ?>
+                <br />
+
+
+
+           
+
+     <h2>Payment History:</h2>
+        <div class='bborder'  ></div>
+
+              
+
+                
+
+
+
+
+                    <!-- Bootstrap core JavaScript -->
+                    <script src="vendor/jquery/jquery.min.js"></script>
+                    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+                    <!-- Additional Scripts -->
+                    <script src="assets/js/custom.js"></script>
+                    <script src="assets/js/owl.js"></script>
+                    <script src="assets/js/slick.js"></script>
+                    <script src="assets/js/accordions.js"></script>
+
+                    <script>
+                                                      $(function() {
+    $('.date-picker').datepicker( {
+        changeMonth: true,
+        changeYear: true,
+        showButtonPanel: true,
+        dateFormat: 'MM yy',
+        onClose: function(dateText, inst) {
+            $(this).datepicker('setDate', new Date(inst.selectedYear, inst.selectedMonth, 1));
+        }
+    });
+});
+                    </script>
+
+                   
+
+
+
+
+                    </div>
 
 
 
 
 </div>
-
-
-
-
-            </div>
           </div>
         </div>
       </div>
