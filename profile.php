@@ -39,7 +39,7 @@
             
             <li><a href="manage-users.php"><i class="fa fa-users fa-fw"></i>Manage Users</a></li>
            
-            <li><a href="index.php"><i class="fa fa-eject fa-fw"></i>Sign Out</a></li>
+            <li><a href="login.html"><i class="fa fa-eject fa-fw"></i>Sign Out</a></li>
           </ul>  
         </nav>
       </div>
@@ -49,9 +49,9 @@
           <div class="row">
             <nav class="templatemo-top-nav col-lg-12 col-md-12">
               <ul class="text-uppercase">
-                <li><a href="" class="active">Home </a></li>
-				<li><a href="announcements.php">Announcements</a></li>
-                <li><a href="profile.php">Profile</a></li>
+                <li><a href="admin.php" >Home </a></li>
+				<li><a href="announcements.php" >Announcements</a></li>
+                <li><a href="" class="active">Profile</a></li>
                 
               </ul>  
             </nav> 
@@ -59,23 +59,23 @@
         </div>
         <div class="templatemo-content-container">
           <div class="templatemo-flex-row flex-content-row">
-            
-          
-
-<b>
-<b>
-<div class="templatemo-flex-row flex-content-row">
-            <div class="col-1">              
-              <div class="templatemo-content-widget orange-bg">
-                <i class="fa fa-times"></i>                
-                <div class="media">
-                  <div class="media-left">
-                    <a href="#">
-                      <img class="media-object img-circle" src="images/sunset.jpg" alt="Sunset">
-                    </a>
-                  </div>
-                  <div class="media-body">
-                    <h2 class="media-heading text-uppercase">   <?php
+            <div class="templatemo-content-widget white-bg col-2">
+              
+			  <i class="fa fa-times"></i>
+              <div class="square"></div>
+			  Informations
+              <h2 class="templatemo-inline-block">
+			  
+			 	  
+			  
+			  
+			  
+			  
+			  
+			  
+			  
+			  </h2><hr>
+              <pre>Username :  <?php
 session_start();
 // Change this to your connection info.
                                                   $DATABASE_HOST = 'localhost';
@@ -110,24 +110,10 @@ session_start();
                                                   }
 
 
-?>  , Welcome to our website</p>Manage your apartment efficiently</h2>
-                     
-                  </div>        
-                </div>                
-              </div>      
+?> 
+Email : <?php
 
-
- <div class="templatemo-content-widget white-bg col-2" style="width:250px;float:left;height:190px">
-              <i class="fa fa-times"></i>
-              <div class="square"></div>
-              <h4 class="templatemo-inline-block">Total Income In This Month</h2><hr>
-              <p>
-			  
-			  <?php
-			  
-			  
-			  
-
+// Change this to your connection info.
                                                   $DATABASE_HOST = 'localhost';
                                                   $DATABASE_USER = 'root';
                                                   $DATABASE_PASS = '';
@@ -135,14 +121,14 @@ session_start();
 
                                                   $con = mysqli_connect($DATABASE_HOST, $DATABASE_USER, $DATABASE_PASS, $DATABASE_NAME);
 
-$month = date('m');
-                                                  if ($stmt = $con->prepare("SELECT sum(amount) from payments  WHERE MONTH(date) = '$month' ")) {
 
-	
+                                                  if ($stmt = $con->prepare('SELECT eMail FROM admin WHERE adminID = ?')) {
+	// Bind parameters (s = string, i = int, b = blob, etc), in our case the username is a string so we use "s"
+	$stmt->bind_param('s', $_SESSION['adminID']);
 
    
 	$stmt->execute();
-	
+	// Store the result so we can check if the account exists in the database.
 	$stmt->store_result();
 
     if ($stmt->num_rows > 0) {
@@ -154,30 +140,16 @@ $month = date('m');
 
     echo  $adminName;
     }
-												  }
-			  
-			  
-			  ?>$
-			  
-			  
-			  </p>
-            </div>		
+	
 
 
+                                                  }
 
 
+?> 
+Phone : <?php
 
- <div class="templatemo-content-widget orange-bg col-2" style="width:250px;float:left;height:190px">
-              <i class="fa fa-times"></i>
-              <div class="square"></div>
-              <h4 class="templatemo-inline-block">Total Outcome In This Month</h2><hr>
-              <p>
-			  
-			  <?php
-			  
-			  
-			  
-
+// Change this to your connection info.
                                                   $DATABASE_HOST = 'localhost';
                                                   $DATABASE_USER = 'root';
                                                   $DATABASE_PASS = '';
@@ -185,14 +157,14 @@ $month = date('m');
 
                                                   $con = mysqli_connect($DATABASE_HOST, $DATABASE_USER, $DATABASE_PASS, $DATABASE_NAME);
 
-$month = date('m');
-                                                  if ($stmt = $con->prepare("SELECT sum(amount) from outgoing  WHERE MONTH(date) = '$month' ")) {
 
-	
+                                                  if ($stmt = $con->prepare('SELECT phone FROM admin WHERE adminID = ?')) {
+	// Bind parameters (s = string, i = int, b = blob, etc), in our case the username is a string so we use "s"
+	$stmt->bind_param('s', $_SESSION['adminID']);
 
    
 	$stmt->execute();
-	
+	// Store the result so we can check if the account exists in the database.
 	$stmt->store_result();
 
     if ($stmt->num_rows > 0) {
@@ -204,27 +176,16 @@ $month = date('m');
 
     echo  $adminName;
     }
-												  }
-			  
-			  
-			  ?>$
-			  
-			  
-			  </p>
-            </div>	
+	
 
 
- <div class="templatemo-content-widget blue-bg col-2" style="width:250px;float:left;height:190px">
-              <i class="fa fa-times"></i>
-              <div class="square"></div>
-              <h4 class="templatemo-inline-block">Total Expecting Amounts </h2><hr>
-              <p>
-			  
-			  <?php
-			  
-			  
-			  
+                                                  }
 
+
+?> 
+Arrival Date <?php
+
+// Change this to your connection info.
                                                   $DATABASE_HOST = 'localhost';
                                                   $DATABASE_USER = 'root';
                                                   $DATABASE_PASS = '';
@@ -232,14 +193,14 @@ $month = date('m');
 
                                                   $con = mysqli_connect($DATABASE_HOST, $DATABASE_USER, $DATABASE_PASS, $DATABASE_NAME);
 
-$month = date('m');
-                                                  if ($stmt = $con->prepare("SELECT sum(amount) from dues  ")) {
 
-	
+                                                  if ($stmt = $con->prepare('SELECT arrivalDate FROM admin WHERE adminID = ?')) {
+	// Bind parameters (s = string, i = int, b = blob, etc), in our case the username is a string so we use "s"
+	$stmt->bind_param('s', $_SESSION['adminID']);
 
    
 	$stmt->execute();
-	
+	// Store the result so we can check if the account exists in the database.
 	$stmt->store_result();
 
     if ($stmt->num_rows > 0) {
@@ -251,82 +212,31 @@ $month = date('m');
 
     echo  $adminName;
     }
-												  }
-			  
-			  
-			  ?>$
-			  
-			  
-			  </p>
-            </div>	
-			
-			<div class="templatemo-content-widget blue-bg col-2" style="width:250px;float:left;height:190px">
-              <i class="fa fa-times"></i>
-              <div class="square"></div>
-              <h4 class="templatemo-inline-block">Money In Box Is</h2><hr>
-              <p>
-			  
-			  <?php
-			  
-			  
-			  
-
-                                                  $DATABASE_HOST = 'localhost';
-                                                  $DATABASE_USER = 'root';
-                                                  $DATABASE_PASS = '';
-                                                  $DATABASE_NAME = 'apartment';
-
-                                                  $con = mysqli_connect($DATABASE_HOST, $DATABASE_USER, $DATABASE_PASS, $DATABASE_NAME);
-
-$month = date('m');
-                                                  if ($stmt = $con->prepare("SELECT amount from cashbox  ")) {
-
 	
 
-   
-	$stmt->execute();
-	
-	$stmt->store_result();
 
-    if ($stmt->num_rows > 0) {
-
-        $stmt->bind_result($adminName);
-	$stmt->fetch();
+                                                  }
 
 
+?> 
+		
 
-    echo  $adminName;
-    }
-												  }
-			  
-			  
-			  ?>$
-			  
-			  
-			  </p>
-            </div>	
-
-
-
-
-
-
-
-
-
-
-
-
-			
-                          
+			 </pre>
+                         
             </div>
-                    
-          </div> <!-- Second row ends -->
-           
+            <div class="templatemo-content-widget white-bg col-1 text-center">
+              <i class="fa fa-times"></i>
+              <h2 class="text-uppercase">
+                
+              </h2>
+              <h3 class="text-uppercase margin-bottom-10">Admin</h3>
+              <img src="images/bicycle.jpg" alt="Bicycle" class="img-circle img-thumbnail">
+            </div>
+            
           </div>
-         
-         
-                  
+          
+          
+                
         </div>
       </div>
     </div>

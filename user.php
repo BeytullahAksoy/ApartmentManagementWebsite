@@ -1,244 +1,406 @@
+<?php
+$hash = password_hash("test",  
+          PASSWORD_DEFAULT);
 
-
-<!DOCTYPE html>
+echo $hash;		  
+?>
 <html lang="en">
-
   <head>
-
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">  
+    <title>Visual Admin Dashboard - Home</title>
     <meta name="description" content="">
-    <meta name="author" content="">
-    <link href="https://fonts.googleapis.com/css?family=Poppins:100,200,300,400,500,600,700,800,900&display=swap" rel="stylesheet">
-
-    <title>house.com | Apartment Management</title>
-
-    <!-- Bootstrap core CSS -->
-    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-
-    <!-- Additional CSS Files -->
-    <link rel="stylesheet" href="assets/css/fontawesome.css">
-    <link rel="stylesheet" href="assets/css/style.css">
-    <link rel="stylesheet" href="assets/css/owl.css">
-  </head>
-
-  <body>
-
-    <!-- ***** Preloader Start ***** -->
-    <div id="preloader">
-        <div class="jumper">
-            <div></div>
-            <div></div>
-            <div></div>
-        </div>
-    </div>  
-    <!-- ***** Preloader End ***** -->
-
-    <!-- Header -->
-    <div class="sub-header">
-      <div class="container">
-        <div class="row">
-          <div class="col-md-8 col-xs-12">
-            <ul class="left-info">
-              <li><a href="#"><i class="fa fa-envelope"></i>beytullahaksoy@gmail.com</a></li>
-              <li><a href="#"><i class="fa fa-phone"></i>111111111</a></li>
-            </ul>
-          </div>
-          <div class="col-md-4">
-            <ul class="right-icons">
-              
-             
-            </ul>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <header class="">
-      <nav class="navbar navbar-expand-lg">
-        <div class="container">
-          <a class="navbar-brand" href="adminpage.php"><h2>Apartment Management <em> Website</em></h2></a>
-          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-          </button>
-          <div class="collapse navbar-collapse" id="navbarResponsive">
-            <ul class="navbar-nav ml-auto">
-              <li class="nav-item active">
-                <a class="nav-link" href="adminpage.php">Home
-                  <span class="sr-only">(current)</span>
-                </a>
-              </li>
-             
-              <li class="nav-item">
-                <a class="nav-link" href="pay-r.php">Payment</a>
-              </li>
-             
-              <li class="nav-item">
-                <a class="nav-link" href="contact-r.php">Profile</a>
-              </li>
-                
-                <li class="nav-item">
-                <a class="nav-link" href="index.php">Sign Out</a>
-              </li>
-            </ul>
-          </div>
-        </div>
-      </nav>
-    </header>
-
-    <!-- Page Content -->
-    <!-- Banner Starts Here -->
-    <div class="main-banner header-text" id="top">
-        <div class="Modern-Slider">
-          <!-- Item -->
-          <div class="item item-1">
-            <div class="img-fill">
-                <div class="text-content">
-                  <h6>Manage your apartment efficiently!</h6>
-                  <h4><?php
-session_start();
-  
-  echo $_SESSION['FirstName'];
+    <meta name="author" content="templatemo">
+   
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,400italic,700' rel='stylesheet' type='text/css'>
+    <link href="css/font-awesome.min.css" rel="stylesheet">
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/templatemo-style.css" rel="stylesheet">
  
-
-?>  Welcome to user panel of your apartment!</h4>
-                  
-                  
-                </div>
-            </div>
-          </div>
-          <!-- // Item -->
-          <!-- Item -->
-          <div class="item item-2">
-            <div class="img-fill">
-                <div class="text-content">
-                  <h6>Payments are so quick now!</h6>
-                  <h4>Collect your payments easily <br>  </h4>
-                  <p>Get payments from users.</p><p> List previous payments</p>
-                  <p>List the members who not paid</p>
-                
-                </div>
-            </div>
-          </div>
-          <!-- // Item -->
-          <!-- Item -->
-          <div class="item item-3">
-            <div class="img-fill">
-                <div class="text-content">
-                  <h6>People actions are so quick!</h6>
-                  <h4>Manage the members!</h4>
-                  <p>You can add or remove the members and find previous members.</p>
-                
-                </div>
-            </div>
-          </div>
-          <!-- // Item -->
+  </head>
+  <body>  
+    <!-- Left column -->
+    <div class="templatemo-flex-row">
+      <div class="templatemo-sidebar">
+        <header class="templatemo-site-header">
+          <div class="square"></div>
+          <h1>House.com</h1>
+        </header>
+        <div class="profile-photo-container">
+          <img src="images/profile-photo.jpg" alt="Profile Photo" class="img-responsive">  
+          <div class="profile-photo-overlay"></div>
+        </div>      
+        <!-- Search box -->
+       
+        <div class="mobile-menu-icon">
+            <i class="fa fa-bars"></i>
         </div>
-    </div>
-    <!-- Banner Ends Here -->
-
-   
-
-  
-
-  
-   
-    <div class="callback-form" style="margin-left:-300px">
-      <div class="container">
-        <div class="row">
-          <div class="col-md-12">
-            <div class="section-heading">
-              <h2 style="margin-left:280px">Last <em>Announcements</em></h2>
-              <br>
-              <div style="margin-left: 510px;">
-              <?php
-
-
-// Change this to your connection info.
-$DATABASE_HOST = 'localhost';
-$DATABASE_USER = 'root';
-$DATABASE_PASS = '';
-$DATABASE_NAME = 'apartman';
-
-
-
-
-$con = mysqli_connect($DATABASE_HOST, $DATABASE_USER, $DATABASE_PASS, $DATABASE_NAME);
-// Check connection
-if (mysqli_connect_errno())
-{
-echo "Failed to connect to MySQL: " . mysqli_connect_error();
-}
-
-$namee = $_SESSION['userName'];
-
-$result = mysqli_query($con,"SELECT text,datee FROM announcements  ");
-
-echo "<table border='1'>
-<tr>
-<th>Announcement</th>
-<th>Date</th>
-</tr>";
-
-while($row = mysqli_fetch_array($result))
-{
-echo "<tr>";
-echo "<td>" . $row['text'] . "</td>";
-echo "<td>" . $row['datee'] . "</td>";
-echo "</tr>";
-}
-echo "</table>";
-
-mysqli_close($con);
-
-?></div>
-            </div>
+        <nav class="templatemo-left-nav">          
+          <ul>
+            <li><a href="#" class="active"><i class="fa fa-home fa-fw"></i>Home</a></li>
+            <li><a href="isPaid-r.php"><i class="fa fa-bar-chart fa-fw"></i>Dues</a></li>
+            
+            
+            
+           
+            <li><a href="index.php"><i class="fa fa-eject fa-fw"></i>Sign Out</a></li>
+          </ul>  
+        </nav>
+      </div>
+      <!-- Main content --> 
+      <div class="templatemo-content col-1 light-gray-bg">
+        <div class="templatemo-top-nav-container">
+          <div class="row">
+            <nav class="templatemo-top-nav col-lg-12 col-md-12">
+              <ul class="text-uppercase">
+                <li><a href="" class="active">Home </a></li>
+				<li><a href="announcements-r.php">Announcements</a></li>
+                <li><a href="profile-r.php">Profile</a></li>
+                
+              </ul>  
+            </nav> 
           </div>
+        </div>
+        <div class="templatemo-content-container">
+          <div class="templatemo-flex-row flex-content-row">
+            
           
-        </div>
 
-        <br>
-        <br>
-        <br>
-        <br>
-      </div>
-    </div>
+<b>
+<b>
+<div class="templatemo-flex-row flex-content-row">
+            <div class="col-1">              
+              <div class="templatemo-content-widget orange-bg">
+                <i class="fa fa-times"></i>                
+                <div class="media">
+                  <div class="media-left">
+                    <a href="#">
+                      <img class="media-object img-circle" src="images/sunset.jpg" alt="Sunset">
+                    </a>
+                  </div>
+                  <div class="media-body">
+                    <h2 class="media-heading text-uppercase">   <?php
+session_start();
+// Change this to your connection info.
+                                                  $DATABASE_HOST = 'localhost';
+                                                  $DATABASE_USER = 'root';
+                                                  $DATABASE_PASS = '';
+                                                  $DATABASE_NAME = 'apartment';
+
+                                                  $con = mysqli_connect($DATABASE_HOST, $DATABASE_USER, $DATABASE_PASS, $DATABASE_NAME);
+
+
+                                                  if ($stmt = $con->prepare('SELECT userName FROM users WHERE userID = ?')) {
+	// Bind parameters (s = string, i = int, b = blob, etc), in our case the username is a string so we use "s"
+	$stmt->bind_param('s', $_SESSION['userID']);
 
    
-    
-    <div class="sub-footer">
-      <div class="container">
-        <div class="row">
-          <div class="col-md-12">
-            <p>
-                CSE Apartment Management
-                
-            </p>
+	$stmt->execute();
+	// Store the result so we can check if the account exists in the database.
+	$stmt->store_result();
+
+    if ($stmt->num_rows > 0) {
+
+        $stmt->bind_result($adminName);
+	$stmt->fetch();
+
+
+
+    echo  $adminName;
+    }
+	
+
+
+                                                  }
+
+
+?>  , Welcome to our website</p></h2>
+                     
+                  </div>        
+                </div>                
+              </div>      
+
+
+ <div class="templatemo-content-widget white-bg col-2" style="width:250px;float:left;height:190px">
+              <i class="fa fa-times"></i>
+              <div class="square"></div>
+              <h4 class="templatemo-inline-block">Total Income In This Month</h2><hr>
+              <p>
+			  
+			  <?php
+			  
+			  
+			  
+
+                                                  $DATABASE_HOST = 'localhost';
+                                                  $DATABASE_USER = 'root';
+                                                  $DATABASE_PASS = '';
+                                                  $DATABASE_NAME = 'apartment';
+
+                                                  $con = mysqli_connect($DATABASE_HOST, $DATABASE_USER, $DATABASE_PASS, $DATABASE_NAME);
+
+$month = date('m');
+                                                  if ($stmt = $con->prepare("SELECT sum(amount) from payments  WHERE MONTH(date) = '$month' ")) {
+
+	
+
+   
+	$stmt->execute();
+	
+	$stmt->store_result();
+
+    if ($stmt->num_rows > 0) {
+
+        $stmt->bind_result($adminName);
+	$stmt->fetch();
+
+
+
+    echo  $adminName;
+    }
+												  }
+			  
+			  
+			  ?>$
+			  
+			  
+			  </p>
+            </div>		
+
+
+
+
+
+ <div class="templatemo-content-widget orange-bg col-2" style="width:250px;float:left;height:190px">
+              <i class="fa fa-times"></i>
+              <div class="square"></div>
+              <h4 class="templatemo-inline-block">Total Outcome In This Month</h2><hr>
+              <p>
+			  
+			  <?php
+			  
+			  
+			  
+
+                                                  $DATABASE_HOST = 'localhost';
+                                                  $DATABASE_USER = 'root';
+                                                  $DATABASE_PASS = '';
+                                                  $DATABASE_NAME = 'apartment';
+
+                                                  $con = mysqli_connect($DATABASE_HOST, $DATABASE_USER, $DATABASE_PASS, $DATABASE_NAME);
+
+$month = date('m');
+                                                  if ($stmt = $con->prepare("SELECT sum(amount) from outgoing  WHERE MONTH(date) = '$month' ")) {
+
+	
+
+   
+	$stmt->execute();
+	
+	$stmt->store_result();
+
+    if ($stmt->num_rows > 0) {
+
+        $stmt->bind_result($adminName);
+	$stmt->fetch();
+
+
+
+    echo  $adminName;
+    }
+												  }
+			  
+			  
+			  ?>$
+			  
+			  
+			  </p>
+            </div>	
+
+
+ <div class="templatemo-content-widget blue-bg col-2" style="width:250px;float:left;height:190px">
+              <i class="fa fa-times"></i>
+              <div class="square"></div>
+              <h4 class="templatemo-inline-block">Total Expecting Amounts </h2><hr>
+              <p>
+			  
+			  <?php
+			  
+			  
+			  
+
+                                                  $DATABASE_HOST = 'localhost';
+                                                  $DATABASE_USER = 'root';
+                                                  $DATABASE_PASS = '';
+                                                  $DATABASE_NAME = 'apartment';
+
+                                                  $con = mysqli_connect($DATABASE_HOST, $DATABASE_USER, $DATABASE_PASS, $DATABASE_NAME);
+
+$month = date('m');
+                                                  if ($stmt = $con->prepare("SELECT sum(amount) from dues  ")) {
+
+	
+
+   
+	$stmt->execute();
+	
+	$stmt->store_result();
+
+    if ($stmt->num_rows > 0) {
+
+        $stmt->bind_result($adminName);
+	$stmt->fetch();
+
+
+
+    echo  $adminName;
+    }
+												  }
+			  
+			  
+			  ?>$
+			  
+			  
+			  </p>
+            </div>	
+			
+			<div class="templatemo-content-widget blue-bg col-2" style="width:250px;float:left;height:190px">
+              <i class="fa fa-times"></i>
+              <div class="square"></div>
+              <h4 class="templatemo-inline-block">Money In Box Is</h2><hr>
+              <p>
+			  
+			  <?php
+			  
+			  
+			  
+
+                                                  $DATABASE_HOST = 'localhost';
+                                                  $DATABASE_USER = 'root';
+                                                  $DATABASE_PASS = '';
+                                                  $DATABASE_NAME = 'apartment';
+
+                                                  $con = mysqli_connect($DATABASE_HOST, $DATABASE_USER, $DATABASE_PASS, $DATABASE_NAME);
+
+$month = date('m');
+                                                  if ($stmt = $con->prepare("SELECT amount from cashbox  ")) {
+
+	
+
+   
+	$stmt->execute();
+	
+	$stmt->store_result();
+
+    if ($stmt->num_rows > 0) {
+
+        $stmt->bind_result($adminName);
+	$stmt->fetch();
+
+
+
+    echo  $adminName;
+    }
+												  }
+			  
+			  
+			  ?>$
+			  
+			  
+			  </p>
+            </div>	
+
+
+
+
+
+
+
+
+
+
+
+
+			
+                          
+            </div>
+                    
+          </div> <!-- Second row ends -->
+           
           </div>
+         
+         
+          <footer class="text-right">
+            <p>Copyright &copy; 2084 Company Name 
+            | Design: Template Mo</p>
+          </footer>         
         </div>
       </div>
     </div>
+    
+    <!-- JS -->
+    <script src="js/jquery-1.11.2.min.js"></script>      <!-- jQuery -->
+    <script src="js/jquery-migrate-1.2.1.min.js"></script> <!--  jQuery Migrate Plugin -->
+    <script src="https://www.google.com/jsapi"></script> <!-- Google Chart -->
+    <script>
+      /* Google Chart 
+      -------------------------------------------------------------------*/
+      // Load the Visualization API and the piechart package.
+      google.load('visualization', '1.0', {'packages':['corechart']});
 
-    <!-- Bootstrap core JavaScript -->
-    <script src="vendor/jquery/jquery.min.js"></script>
-    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+      // Set a callback to run when the Google Visualization API is loaded.
+      google.setOnLoadCallback(drawChart); 
+      
+      // Callback that creates and populates a data table,
+      // instantiates the pie chart, passes in the data and
+      // draws it.
+      function drawChart() {
 
-    <!-- Additional Scripts -->
-    <script src="assets/js/custom.js"></script>
-    <script src="assets/js/owl.js"></script>
-    <script src="assets/js/slick.js"></script>
-    <script src="assets/js/accordions.js"></script>
+          // Create the data table.
+          var data = new google.visualization.DataTable();
+          data.addColumn('string', 'Topping');
+          data.addColumn('number', 'Slices');
+          data.addRows([
+            ['Mushrooms', 3],
+            ['Onions', 1],
+            ['Olives', 1],
+            ['Zucchini', 1],
+            ['Pepperoni', 2]
+          ]);
 
-    <script language = "text/Javascript"> 
-      cleared[0] = cleared[1] = cleared[2] = 0; //set a cleared flag for each field
-      function clearField(t){                   //declaring the array outside of the
-      if(! cleared[t.id]){                      // function makes it static and global
-          cleared[t.id] = 1;  // you could use true and false, but that's more typing
-          t.value='';         // with more chance of typos
-          t.style.color='#fff';
-          }
+          // Set chart options
+          var options = {'title':'How Much Pizza I Ate Last Night'};
+
+          // Instantiate and draw our chart, passing in some options.
+          var pieChart = new google.visualization.PieChart(document.getElementById('pie_chart_div'));
+          pieChart.draw(data, options);
+
+          var barChart = new google.visualization.BarChart(document.getElementById('bar_chart_div'));
+          barChart.draw(data, options);
       }
+
+      $(document).ready(function(){
+        if($.browser.mozilla) {
+          //refresh page on browser resize
+          // http://www.sitepoint.com/jquery-refresh-page-browser-resize/
+          $(window).bind('resize', function(e)
+          {
+            if (window.RT) clearTimeout(window.RT);
+            window.RT = setTimeout(function()
+            {
+              this.location.reload(false); /* false to get page from cache */
+            }, 200);
+          });      
+        } else {
+          $(window).resize(function(){
+            drawChart();
+          });  
+        }   
+      });
+      
     </script>
+    <script type="text/javascript" src="js/templatemo-script.js"></script>      <!-- Templatemo Script -->
 
   </body>
 </html>
